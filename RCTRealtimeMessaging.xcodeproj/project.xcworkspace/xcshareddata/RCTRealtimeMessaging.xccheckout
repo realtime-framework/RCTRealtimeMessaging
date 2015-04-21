@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>682DD9C9-3D49-4912-8DFA-436162155BC6</string>
+	<key>IDESourceControlProjectName</key>
+	<string>RCTRealtimeMessaging</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>28C8B77D83CFF6D53DE3C79973D435F92005F965</key>
+		<string>ssh://bitbucket.org/realtime_framework/react-native-ios.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>node_modules/react-native/Libraries/RCTRealtimeMessaging/RCTRealtimeMessaging.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>28C8B77D83CFF6D53DE3C79973D435F92005F965</key>
+		<string>../../../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://bitbucket.org/realtime_framework/react-native-ios.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>28C8B77D83CFF6D53DE3C79973D435F92005F965</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>28C8B77D83CFF6D53DE3C79973D435F92005F965</string>
+			<key>IDESourceControlWCCName</key>
+			<string>react-native-ios</string>
+		</dict>
+	</array>
+</dict>
+</plist>
