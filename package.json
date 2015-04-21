@@ -1,0 +1,30 @@
+{
+  "name": "RCTRealtimeMessagingIOS",
+  "version": "1.0.3",
+  "description": "The Realtime Framework Cloud Messaging Pub/Sub client for React-Native",
+  "main": "RCTRealtimeMessagingIOS.js",
+  "scripts": {
+    "start": "exit 1"
+  },
+  "repository": {
+  "type": "git",
+  "url": "https://github.com/realtime-framework/RCTRealtimeMessaging.git"
+  },
+  "keywords": [
+    "react-component",
+    "reactnative",
+    "react-native",
+    "RealtimeMessaging",
+    "Realtime",
+    "ios"
+  ],
+  "author": "Realtime",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/realtime-framework/RCTRealtimeMessaging/issues"
+  },
+  "homepage": "http://framework.realtime.co/messaging/",
+  "dependencies": {
+    "react-native": "^0.4.0"
+  }
+}
