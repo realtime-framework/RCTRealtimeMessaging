@@ -9,7 +9,25 @@ More information can be found on the
 [Realtime native iOS SDK reference documentation](http://messaging-public.realtime.co/documentation/ios/2.1.0/index.html).
 
 
-##ReatimeMessagingIOS.js
+##Installation
+
+* Create a new react-native project. [Check react-native getting started](http://facebook.github.io/react-native/docs/getting-started.html#content)
+
+* On the terminal, go to PROJECT_DIR/node_modules/react-native.
+
+* Execute
+
+		 npm install --save react-native-realtimemessaging-ios
+
+* Drag RCTRealtimeMessaging.xcodeproj from the node_modules/react-native-	realtimemessaging-ios folder into your XCode project. Click on the project 	in XCode, goto Build Phases then Link Binary With Libraries and add 	libRCTRealtimeMessaging.a
+
+ You are ready to go.
+
+---
+
+
+
+##ReatimeMessagingIOS class reference
 
 ###Import ReatimeMessaging to your project
 
