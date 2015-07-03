@@ -12,7 +12,7 @@
 #define OrtcClient_OrtcClient_h
 
 #import <Foundation/Foundation.h>
-#import "SRWebSocket.h"
+#import "RCTSRWebSocket.h"
 
 #define heartbeatDefaultTime 15 // Heartbeat default interval time
 #define heartbeatDefaultFails 3 // Heartbeat default max fails
@@ -204,7 +204,7 @@
 
 
 
-@interface OrtcClient : NSObject <SRWebSocketDelegate>
+@interface OrtcClient : NSObject <RCTSRWebSocketDelegate>
 
 ///---------------------------------------------------------------------------------------
 /// @name Properties

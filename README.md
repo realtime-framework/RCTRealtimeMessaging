@@ -21,6 +21,8 @@ More information can be found on the
 
 * Drag RCTRealtimeMessaging.xcodeproj from the node_modules/react-native-	realtimemessaging-ios folder into your XCode project. Click on the project 	in XCode, goto Build Phases then Link Binary With Libraries and add 	libRCTRealtimeMessaging.a
 
+* Drag RCTRealtimeMessaging.js to the root of your project.
+
  You are ready to go.
 
 ---

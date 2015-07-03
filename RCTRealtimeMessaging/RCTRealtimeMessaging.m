@@ -14,7 +14,7 @@
 
 RCT_EXPORT_MODULE()
 
-RCT_EXPORT_METHOD(connect:(NSDictionary*)connectionSettings id:(NSString*)pId){
+RCT_EXPORT_METHOD(connect:(id)connectionSettings id:(NSString*)pId){
     
     NSString *appKey = [RCTConvert NSString:connectionSettings[@"appKey"]];
     NSString *clientConnMeta = [RCTConvert NSString:connectionSettings[@"connectionMetadata"]];
@@ -59,7 +59,7 @@ RCT_EXPORT_METHOD(sendMessage:(NSString*)message toChannel:(NSString*)channel us
  *
  * @param ortc The ORTC object.
  */
-RCT_EXPORT_METHOD(onConnected:(OrtcClient*) ortc)
+- (void) onConnected:(OrtcClient*) ortc
 {
     NSString *clientID = [[_queue allKeysForObject:ortc] objectAtIndex:0];
     [self.bridge.eventDispatcher sendDeviceEventWithName:[NSString stringWithFormat:@"%@-onConnected", clientID]
@@ -180,7 +180,7 @@ RCT_EXPORT_METHOD(presence:(NSString*) aUrl isCLuster:(BOOL) aIsCluster applicat
  *
  * @param ortc The ORTC object.
  */
-RCT_EXPORT_METHOD(onDisconnected:(OrtcClient*) ortc)
+- (void) onDisconnected:(OrtcClient*) ortc
 {   
     NSString *clientID = [[_queue allKeysForObject:ortc] objectAtIndex:0];
     [self.bridge.eventDispatcher sendDeviceEventWithName:[NSString stringWithFormat:@"%@-onDisconnected", clientID]
@@ -192,7 +192,7 @@ RCT_EXPORT_METHOD(onDisconnected:(OrtcClient*) ortc)
  * @param ortc The ORTC object.
  * @param channel The channel name.
  */
-RCT_EXPORT_METHOD(onSubscribed:(OrtcClient*) ortc channel:(NSString*) channel)
+- (void)onSubscribed:(OrtcClient*) ortc channel:(NSString*) channel
 {
     NSString *clientID = [[_queue allKeysForObject:ortc] objectAtIndex:0];
     [self.bridge.eventDispatcher sendDeviceEventWithName:[NSString stringWithFormat:@"%@-onSubscribed", clientID]
@@ -205,7 +205,7 @@ RCT_EXPORT_METHOD(onSubscribed:(OrtcClient*) ortc channel:(NSString*) channel)
  * @param ortc The ORTC object.
  * @param channel The channel name.
  */
-RCT_EXPORT_METHOD(onUnsubscribed:(OrtcClient*) ortc channel:(NSString*) channel)
+- (void)onUnsubscribed:(OrtcClient*) ortc channel:(NSString*) channel
 {
     NSString *clientID = [[_queue allKeysForObject:ortc] objectAtIndex:0];
     [self.bridge.eventDispatcher sendDeviceEventWithName:[NSString stringWithFormat:@"%@-onUnSubscribed", clientID]
@@ -219,7 +219,7 @@ RCT_EXPORT_METHOD(onUnsubscribed:(OrtcClient*) ortc channel:(NSString*) channel)
  * @param ortc The ORTC object.
  * @param error The occurred exception.
  */
-RCT_EXPORT_METHOD(onException:(OrtcClient*) ortc error:(NSError*) error)
+- (void)onException:(OrtcClient*) ortc error:(NSError*) error
 {
     NSString *clientID = [[_queue allKeysForObject:ortc] objectAtIndex:0];
     [self.bridge.eventDispatcher sendDeviceEventWithName:[NSString stringWithFormat:@"%@-onException", clientID]
@@ -232,7 +232,7 @@ RCT_EXPORT_METHOD(onException:(OrtcClient*) ortc error:(NSError*) error)
  *
  * @param ortc The ORTC object.
  */
-RCT_EXPORT_METHOD(onReconnecting:(OrtcClient*) ortc)
+- (void)onReconnecting:(OrtcClient*) ortc
 {
     NSString *clientID = [[_queue allKeysForObject:ortc] objectAtIndex:0];
     [self.bridge.eventDispatcher sendDeviceEventWithName:[NSString stringWithFormat:@"%@-onReconnecting", clientID]
@@ -243,7 +243,7 @@ RCT_EXPORT_METHOD(onReconnecting:(OrtcClient*) ortc)
  *
  * @param ortc The ORTC object.
  */
-RCT_EXPORT_METHOD(onReconnected:(OrtcClient*) ortc)
+- (void)onReconnected:(OrtcClient*) ortc
 {
     NSString *clientID = [[_queue allKeysForObject:ortc] objectAtIndex:0];
     [self.bridge.eventDispatcher sendDeviceEventWithName:[NSString stringWithFormat:@"%@-onReconnected", clientID]
@@ -295,7 +295,7 @@ RCT_EXPORT_METHOD(isSubscribed:(NSString*) channel usingClient:(NSString*)client
  @param permissions The channels and their permissions (w: write, r: read, p: presence, case sensitive).
  @return TRUE if the authentication was successful or FALSE if it was not.
  */
-RCT_EXPORT_METHOD(saveAuthentication:(NSString*) url isCLuster:(BOOL) isCluster authenticationToken:(NSString*) authenticationToken authenticationTokenIsPrivate:(BOOL) authenticationTokenIsPrivate applicationKey:(NSString*) applicationKey timeToLive:(int) timeToLive privateKey:(NSString*) privateKey permissions:(NSMutableDictionary*) permissions usingClient:(NSString*)clientID callback:(RCTResponseSenderBlock)callback)
+RCT_EXPORT_METHOD(saveAuthentication:(NSString*) url isCLuster:(BOOL) isCluster authenticationToken:(NSString*) authenticationToken authenticationTokenIsPrivate:(BOOL) authenticationTokenIsPrivate applicationKey:(NSString*) applicationKey timeToLive:(int) timeToLive privateKey:(NSString*) privateKey permissions:(id) permissions usingClient:(NSString*)clientID callback:(RCTResponseSenderBlock)callback)
 {   
     OrtcClient *ortcClient = [_queue objectForKey:clientID];
     BOOL result =  [ortcClient saveAuthentication:url isCLuster:isCluster authenticationToken:authenticationToken authenticationTokenIsPrivate:authenticationTokenIsPrivate applicationKey:applicationKey timeToLive:timeToLive privateKey:privateKey permissions:permissions];
