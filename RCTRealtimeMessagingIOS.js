@@ -10,7 +10,7 @@
 'use strict';
 
 var React = require('react-native');
-var NativeModules = require('NativeModules');
+var NativeModules = React.NativeModules;
 var RCTDeviceEventEmitter = require('RCTDeviceEventEmitter');
 var ortcClient = NativeModules.RealtimeMessaging;
 var RTEvents = {};

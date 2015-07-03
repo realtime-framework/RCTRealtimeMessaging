@@ -29,6 +29,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5736D4F01B46CD8B009542D8 /* RCTSRWebSocket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCTSRWebSocket.h; sourceTree = "<group>"; };
 		57E5A0A31AD2D06E00B19F3B /* libRCTRealtimeMessaging.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRCTRealtimeMessaging.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		57E5A0A61AD2D06E00B19F3B /* RCTRealtimeMessaging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCTRealtimeMessaging.h; sourceTree = "<group>"; };
 		57E5A0A81AD2D06E00B19F3B /* RCTRealtimeMessaging.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCTRealtimeMessaging.m; sourceTree = "<group>"; };
@@ -40,7 +41,6 @@
 		57E5A0C81AD2D0E800B19F3B /* RealtimePushAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RealtimePushAppDelegate.m; sourceTree = "<group>"; };
 		57E5A0CD1AD2D11000B19F3B /* base64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = base64.h; sourceTree = "<group>"; };
 		57E5A0CE1AD2D11000B19F3B /* NSData+SRB64Additions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSData+SRB64Additions.h"; sourceTree = "<group>"; };
-		57E5A0CF1AD2D11000B19F3B /* SRWebSocket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SRWebSocket.h; sourceTree = "<group>"; };
 		57E5A0D01AD2D11B00B19F3B /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -94,7 +94,7 @@
 			children = (
 				57E5A0CD1AD2D11000B19F3B /* base64.h */,
 				57E5A0CE1AD2D11000B19F3B /* NSData+SRB64Additions.h */,
-				57E5A0CF1AD2D11000B19F3B /* SRWebSocket.h */,
+				5736D4F01B46CD8B009542D8 /* RCTSRWebSocket.h */,
 			);
 			path = SocketRocket;
 			sourceTree = "<group>";

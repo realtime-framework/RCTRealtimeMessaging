@@ -13,7 +13,7 @@
 @interface OrtcClient()
 {
 @private
-    SRWebSocket* _webSocket;
+    RCTSRWebSocket* _webSocket;
     
     id<OrtcClientDelegate> _ortcDelegate;
     
@@ -1420,9 +1420,9 @@ static NSString *ortcDEVICE_TOKEN;
                 NSString* wsUrl = [NSString stringWithFormat:@"%@://%@/broadcast/%@/%@/websocket", wsScheme, connUrl, serverId, connId];
                 
                 NSURLRequest *req = [NSURLRequest requestWithURL:[NSURL URLWithString:wsUrl] cachePolicy: NSURLRequestUseProtocolCachePolicy timeoutInterval:5.0];
-                _webSocket = [[SRWebSocket alloc] initWithURLRequest:req];
+                _webSocket = [[RCTSRWebSocket alloc] initWithURLRequest:req];
                 
-                //_webSocket = [[SRWebSocket alloc] initWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:wsUrl]]];
+                //_webSocket = [[RCTSRWebSocket alloc] initWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:wsUrl]]];
                 _webSocket.delegate = self;
                
                 [_webSocket open];
@@ -1540,14 +1540,14 @@ static NSString *ortcDEVICE_TOKEN;
     return result;
 }
 
-#pragma mark - SRWebSocketDelegate
+#pragma mark - RCTSRWebSocketDelegate
 
-- (void)webSocket:(SRWebSocket*) webSocket didReceiveMessage:(id) aMessage
+- (void)webSocket:(RCTSRWebSocket*) webSocket didReceiveMessage:(id) aMessage
 {
     [self parseReceivedMessage:aMessage];
 }
 
-- (void)webSocketDidOpen:(SRWebSocket *)webSocket
+- (void)webSocketDidOpen:(RCTSRWebSocket *)webSocket
 {
     if ([self isEmpty:[self readLocalStorage:[SESSION_STORAGE_NAME stringByAppendingString:applicationKey]]]) {
         sessionId = [self generateId:16];
@@ -1563,7 +1563,7 @@ static NSString *ortcDEVICE_TOKEN;
     [_webSocket send:aString];
 }
 
-- (void)webSocket:(SRWebSocket *)webSocket didFailWithError:(NSError *)error
+- (void)webSocket:(RCTSRWebSocket *)webSocket didFailWithError:(NSError *)error
 {
     isConnecting = NO;
 	
@@ -1595,7 +1595,7 @@ static NSString *ortcDEVICE_TOKEN;
     }
 }
 
-- (void)webSocket:(SRWebSocket *)webSocket didCloseWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean
+- (void)webSocket:(RCTSRWebSocket *)webSocket didCloseWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean
 {
     [self processDisconnect:YES];
     
