@@ -38,7 +38,7 @@ class RCTRealtimeMessagingIOS extends React.Component {
 	}
 
 	RTSubscribeWithNotifications(channel, subscribeOnReconnect: boolean){
-		ortcClient.subscribe(channel, subscribeOnReconnect, this.id);
+		ortcClient.subscribeWithNotifications(channel, subscribeOnReconnect, this.id);
 	}
 
 	RTUnsubscribe(channel){
@@ -111,6 +111,15 @@ class RCTRealtimeMessagingIOS extends React.Component {
 		- onDisablePresence
 		- onEnablePresence
 	*/
+
+	RTCustomPushNotificationListener(callBack: Function){
+		require('RCTDeviceEventEmitter').addListener(
+			  'onPushNotification',
+			  callBack
+			);
+		ortcClient.checkForNotifications();
+	};
+
 
 	RTEventListener(notification, callBack: Function){
 		var modNotification = String(this.id) + '-' + notification;

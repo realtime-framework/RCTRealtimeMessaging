@@ -15,4 +15,6 @@
 @interface RCTRealtimeMessaging : NSObject<OrtcClientDelegate, RCTBridgeModule>
 @property(retain, nonatomic)OrtcClient *ortcClient;
 @property(retain, nonatomic)NSMutableDictionary *queue;
+@property(retain, nonatomic)NSDictionary *pushInfo;
+
 @end

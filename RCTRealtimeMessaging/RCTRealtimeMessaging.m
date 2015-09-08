@@ -14,6 +14,82 @@
 
 RCT_EXPORT_MODULE()
 
+
+- (id)init{
+    self = [super init];
+    if (self) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedNotification:) name:@"Notification" object:nil];
+    }
+    return self;
+}
+
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void) receivedNotification:(NSNotification *) notification{
+    NSDictionary *userInfo = [notification userInfo];
+    NSMutableDictionary *pushInfo = [[NSMutableDictionary alloc] init];
+    [self handleCustom:pushInfo from:userInfo];
+    _pushInfo = [pushInfo objectForKey:@"payload"];
+    [self.bridge.eventDispatcher sendDeviceEventWithName:@"onPushNotification"
+                                                    body:[pushInfo objectForKey:@"payload"]];
+}
+
+RCT_EXPORT_METHOD(checkForNotifications){
+    if(_pushInfo){
+        [self.bridge.eventDispatcher sendDeviceEventWithName:@"onPushNotification"
+                                                        body:_pushInfo];
+        _pushInfo = nil;
+    }
+}
+
+
+- (void)handleStd:(NSMutableDictionary*)pushInfo from:(NSDictionary*)userInfo
+{
+    NSString* msg = [userInfo objectForKey:@"M"];
+    int num = 0;
+    NSUInteger      len = [msg length];
+    unichar         buffer[len+1];
+    [msg getCharacters: buffer range: NSMakeRange(0, len)];
+    
+    NSString *finalM;
+    for (int i=0; i<len; i++) {
+        if (buffer[i] == '_') {
+            num++;
+            if (num == 2 && len > i + 1) {
+                finalM = [msg substringFromIndex:i+1];
+            }
+        }
+    }
+    
+    NSError *error = nil;
+    NSData *jsonData = [finalM dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
+    
+    if (json != nil) {
+        [pushInfo setObject:json forKey:@"payload"];
+    }else
+    {
+        [pushInfo setObject:finalM forKey:@"payload"];
+    }
+}
+
+
+- (void)handleCustom:(NSMutableDictionary*)pushInfo from:(NSDictionary*)userInfo
+{
+    NSMutableDictionary *payload = [[NSMutableDictionary alloc] init];
+    for (NSString* key  in [[userInfo objectForKey:@"aps"] allKeys]) {
+        if (![key isEqualToString:@"sound"] && ![key isEqualToString:@"badge"] && ![key isEqualToString:@"alert"]) {
+            [payload setObject:[[userInfo objectForKey:@"aps"] objectForKey:key] forKey:key];
+        }
+    }
+    [pushInfo setObject:payload forKey:@"payload"];
+}
+
+
+
+
 RCT_EXPORT_METHOD(connect:(id)connectionSettings id:(NSString*)pId){
     
     NSString *appKey = [RCTConvert NSString:connectionSettings[@"appKey"]];
