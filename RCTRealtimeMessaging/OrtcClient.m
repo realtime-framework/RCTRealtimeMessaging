@@ -1684,8 +1684,7 @@ static NSString *ortcDEVICE_TOKEN;
 - (void) receivedNotification:(NSNotification *) notification
 {
     // [notification name] should be @"ApnsNotification" for received Apns Notififications
-	if ([[notification name] isEqualToString:@"ApnsNotification"]) {
-		
+    if ([[notification name] isEqualToString:@"ApnsNotification"]) {		
 		NSDictionary *notificaionInfo = [[NSDictionary alloc] initWithDictionary:[notification userInfo]];
 		if ([[notificaionInfo objectForKey:@"A"] isEqualToString:applicationKey]) {
 			
