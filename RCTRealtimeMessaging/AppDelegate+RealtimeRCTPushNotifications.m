@@ -8,6 +8,7 @@
 
 #import "AppDelegate+RealtimeRCTPushNotifications.h"
 #import <objc/runtime.h>
+#define NOTIFICATIONS_KEY @"Local_Storage_Notifications"
 
 #pragma GCC diagnostic ignored "-Wundeclared-selector"
 @implementation AppDelegate (RealtimeRCTPushNotifications)
@@ -62,7 +63,25 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
   if ([userInfo objectForKey:@"C"] && [userInfo objectForKey:@"M"] && [userInfo objectForKey:@"A"]) {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"ApnsNotification" object:nil userInfo:userInfo];
+    
+    if ([[[userInfo objectForKey:@"aps" ] objectForKey:@"alert"] isKindOfClass:[NSString class]]) {
+      NSString *ortcMessage = [NSString stringWithFormat:@"a[\"{\\\"ch\\\":\\\"%@\\\",\\\"m\\\":\\\"%@\\\"}\"]", [userInfo objectForKey:@"C"], [userInfo objectForKey:@"M"]];
+      
+      NSMutableDictionary *notificationsDict  = [[NSMutableDictionary alloc] initWithDictionary:[[NSUserDefaults standardUserDefaults] objectForKey:NOTIFICATIONS_KEY]];
+      NSMutableArray *notificationsArray = [[NSMutableArray alloc] initWithArray:[notificationsDict objectForKey:[userInfo objectForKey:@"A"]]];
+      [notificationsArray addObject:ortcMessage];
+      [notificationsDict setObject:notificationsArray forKey:[userInfo objectForKey:@"A"]];
+      
+      [[NSUserDefaults standardUserDefaults] setObject:notificationsDict forKey:NOTIFICATIONS_KEY];
+      [[NSUserDefaults standardUserDefaults] synchronize];
+      
+      [[NSNotificationCenter defaultCenter] postNotificationName:@"ApnsNotification" object:nil userInfo:userInfo];
+      
+    }else{
+      
+      [[NSNotificationCenter defaultCenter] postNotificationName:@"Notification" object:nil userInfo:userInfo];
+      
+    }
   }
 }
 
